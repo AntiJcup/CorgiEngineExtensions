@@ -31,7 +31,7 @@ namespace MoreMountains.CorgiEngine
 		protected CharacterJetpack _jetpack;
 
 	    ///
-	    protected override void Initialization()
+	    public override void Initialization()
 	    {
 		    if (LevelManager.Instance.Players.Count == 0)
 		    {

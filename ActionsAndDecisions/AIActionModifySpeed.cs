@@ -16,7 +16,7 @@ namespace MoreMountains.CorgiEngine
 		protected float originalSpeed;
 
 
-	 	protected override void Initialization()
+	 	public override void Initialization()
         {
             _horizontalMovement = this.gameObject.GetComponent<CharacterHorizontalMovement>();
 			originalSpeed = _horizontalMovement.WalkSpeed;

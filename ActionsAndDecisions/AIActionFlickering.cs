@@ -20,7 +20,7 @@ namespace MoreMountains.CorgiEngine
 		protected float flickerDuration = 999999999f;
 
 		///
-	 	protected override void Initialization()
+	 	public override void Initialization()
         {
 			_renderer = GetComponent<SpriteRenderer>();
 
