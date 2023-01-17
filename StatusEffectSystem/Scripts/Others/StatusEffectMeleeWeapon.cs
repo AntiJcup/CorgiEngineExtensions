@@ -38,7 +38,8 @@ namespace StatusSystem
 
             _damageOnTouch = _damageArea.AddComponent<ApplyStatusAndDamageOnTouch>();
             _damageOnTouch.TargetLayerMask = TargetLayerMask;
-            _damageOnTouch.DamageCaused = DamageCaused;
+            _damageOnTouch.MaxDamageCaused = MaxDamageCaused;
+            _damageOnTouch.MinDamageCaused = MinDamageCaused;
             _damageOnTouch.DamageCausedKnockbackType = Knockback;
             _damageOnTouch.DamageCausedKnockbackForce = KnockbackForce;
             _damageOnTouch.InvincibilityDuration = InvincibilityDuration;

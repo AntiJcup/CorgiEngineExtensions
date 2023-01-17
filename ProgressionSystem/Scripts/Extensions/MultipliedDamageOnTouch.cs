@@ -15,7 +15,8 @@ namespace ProgressionSystem.Scripts.Extensions
             // if what we're colliding with is a CorgiController, we apply a knockback force
             _colliderCorgiController = health.gameObject.MMGetComponentNoAlloc<CorgiController>();
 
-            ApplyDamageCausedKnockback();
+            float randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
+            ApplyDamageCausedKnockback(randomDamage, TypedDamages);
 			
             OnHitDamageable?.Invoke();
 
@@ -27,7 +28,7 @@ namespace ProgressionSystem.Scripts.Extensions
             }
 
             // we apply the damage to the thing we've collided with
-            _colliderHealth.Damage((int)(DamageMultiplier.Value*DamageCaused), gameObject,InvincibilityDuration,InvincibilityDuration, _damageDirection);
+            _colliderHealth.Damage((int)(DamageMultiplier.Value* randomDamage), gameObject,InvincibilityDuration,InvincibilityDuration, _damageDirection);
 
             if (_colliderHealth.CurrentHealth <= 0)
             {

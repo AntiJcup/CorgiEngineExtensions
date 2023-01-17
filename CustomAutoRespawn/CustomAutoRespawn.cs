@@ -18,7 +18,6 @@ namespace MoreMountains.CorgiEngine
         public float spawnAnimationDuration;
         public GameObject SpawnerPrefab;
         public float SpawnerAnimationDelay;
-        protected Character _character;
         protected CharacterHorizontalMovement _characterHMovement;
         protected float originalMovementSpeed;
         protected Animator _animatorCharacter;
@@ -28,7 +27,6 @@ namespace MoreMountains.CorgiEngine
         protected override void Start()
         {
             base.Start();
-            _character = GetComponent<Character>();
             _characterHMovement = GetComponent<CharacterHorizontalMovement>();
             originalMovementSpeed = _characterHMovement.WalkSpeed;
             _animatorCharacter = GetComponent<Animator>();

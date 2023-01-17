@@ -37,7 +37,8 @@ namespace CorgiEngineExtensions
 
             _damageOnTouch = _damageArea.AddComponent<TypedDamageOnTouch>();
             _damageOnTouch.TargetLayerMask = TargetLayerMask;
-            _damageOnTouch.DamageCaused = DamageCaused;
+            _damageOnTouch.MaxDamageCaused = MaxDamageCaused;
+            _damageOnTouch.MinDamageCaused = MinDamageCaused;
             _damageOnTouch.DamageCausedKnockbackType = Knockback;
             _damageOnTouch.DamageCausedKnockbackForce = KnockbackForce;
             _damageOnTouch.InvincibilityDuration = InvincibilityDuration;

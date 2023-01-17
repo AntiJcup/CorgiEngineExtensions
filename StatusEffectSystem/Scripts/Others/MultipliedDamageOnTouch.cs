@@ -20,7 +20,8 @@ namespace StatusSystem
             // if what we're colliding with is a CorgiController, we apply a knockback force
             _colliderCorgiController = health.gameObject.MMGetComponentNoAlloc<CorgiController>();
 
-            ApplyDamageCausedKnockback();
+            float randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
+            ApplyDamageCausedKnockback(randomDamage, TypedDamages);
 			
             OnHitDamageable?.Invoke();
 
@@ -34,9 +35,9 @@ namespace StatusSystem
             // we apply the damage to the thing we've collided with
             var character = Owner.MMGetComponentNoAlloc<Character>();
             if (character != null)
-                _colliderHealth.Damage((int)(DamageCaused * _multipliers[character]), gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
+                _colliderHealth.Damage((int)(randomDamage * _multipliers[character]), gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
             else
-                _colliderHealth.Damage(DamageCaused, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
+                _colliderHealth.Damage(randomDamage, gameObject, InvincibilityDuration, InvincibilityDuration, _damageDirection);
             if (_colliderHealth.CurrentHealth <= 0)
             {
                 OnKill?.Invoke();

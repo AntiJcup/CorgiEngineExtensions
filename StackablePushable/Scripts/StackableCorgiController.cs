@@ -48,7 +48,7 @@ namespace MoreMountains.CorgiEngine
 				return;
 			}				
 
-			float rayLength = (_boundsHeight / 2) + RayOffset; 	
+			float rayLength = (_boundsHeight / 2) + RayOffsetVertical; 	
 
 			if (State.OnAMovingPlatform)
 			{
@@ -62,8 +62,8 @@ namespace MoreMountains.CorgiEngine
 
 			_verticalRayCastFromLeft = (_boundsBottomLeftCorner + _boundsTopLeftCorner) / 2;
 			_verticalRayCastToRight = (_boundsBottomRightCorner + _boundsTopRightCorner) / 2;	
-			_verticalRayCastFromLeft += (Vector2)transform.up * RayOffset;
-			_verticalRayCastToRight += (Vector2)transform.up * RayOffset;
+			_verticalRayCastFromLeft += (Vector2)transform.up * RayOffsetHorizontal;
+			_verticalRayCastToRight += (Vector2)transform.up * RayOffsetHorizontal;
 			_verticalRayCastFromLeft += (Vector2)transform.right * _newPosition.x;
 			_verticalRayCastToRight += (Vector2)transform.right * _newPosition.x;
 
@@ -208,7 +208,7 @@ namespace MoreMountains.CorgiEngine
 
 					_newPosition.y = -distance
 						+ _boundsHeight / 2 
-						+ RayOffset;
+						+ RayOffsetVertical;
 				}
 
 				if (!State.WasGroundedLastFrame && _speed.y > 0)
@@ -262,7 +262,7 @@ namespace MoreMountains.CorgiEngine
 			/*if (_newPosition.y<0)
 				return;*/
 
-			float rayLength = State.IsGrounded ? RayOffset : _newPosition.y;
+			float rayLength = State.IsGrounded ? RayOffsetVertical : _newPosition.y;
 			rayLength += _boundsHeight / 2;
 
 			bool hitConnected=false; 
@@ -331,15 +331,15 @@ namespace MoreMountains.CorgiEngine
 		/// If we hit a wall/slope, we check its angle and move or not according to it.
 		/// </summary>
 		protected override void CastRaysToTheSides(float raysDirection) 
-		{	
+		{
             // we determine the origin of our rays
 			_horizontalRayCastFromBottom = (_boundsBottomRightCorner + _boundsBottomLeftCorner) / 2;
 			_horizontalRayCastToTop = (_boundsTopLeftCorner + _boundsTopRightCorner) / 2;	
-			_horizontalRayCastFromBottom = _horizontalRayCastFromBottom + (Vector2)transform.up * _obstacleHeightTolerance;
-			_horizontalRayCastToTop = _horizontalRayCastToTop - (Vector2)transform.up * _obstacleHeightTolerance;
+			_horizontalRayCastFromBottom = _horizontalRayCastFromBottom + (Vector2)transform.up * ObstacleHeightTolerance;
+			_horizontalRayCastToTop = _horizontalRayCastToTop - (Vector2)transform.up * ObstacleHeightTolerance;
 
 			// we determine the length of our rays
-			float horizontalRayLength = Mathf.Abs(_speed.x * Time.deltaTime) + _boundsWidth / 2 + RayOffset * 2;
+			float horizontalRayLength = Mathf.Abs(_speed.x * Time.deltaTime) + _boundsWidth / 2 + RayOffsetHorizontal * 2;
 
 			// we resize our storage if needed
 			if (_sideHitsStorage.Length != NumberOfHorizontalRays)
@@ -413,13 +413,13 @@ namespace MoreMountains.CorgiEngine
                             {
                                 _newPosition.x = -distance
                                     + _boundsWidth / 2
-                                    + RayOffset * 2;
+                                    + RayOffsetHorizontal * 2;
                             }
                             else
                             {
                                 _newPosition.x = distance
                                     - _boundsWidth / 2
-                                    - RayOffset * 2;
+                                    - RayOffsetHorizontal * 2;
                             }
 
                             // if we're in the air, we prevent the character from being pushed back.
