@@ -17,7 +17,7 @@ namespace CorgiEngineExtensions
             float randomDamage = UnityEngine.Random.Range(MinDamageCaused, Mathf.Max(MaxDamageCaused, MinDamageCaused));
             ApplyDamageCausedKnockback(randomDamage, TypedDamages);
 
-            OnHitDamageable?.Invoke();
+            OnHitDamageable?.Invoke(health);
 
             HitDamageableFeedback?.PlayFeedbacks(this.transform.position);
 
